@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1440" />
+    <title>Chrome — AI Image Generator</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Root Container -->
+    <div class="relative w-full h-screen overflow-hidden bg-v3-bg">
+      <!-- Layer 1 — Hero Image -->
+      <div id="hero-bg" class="absolute inset-0 z-0">
+        <img
+          src="/images/generated-1772218971282.png"
+          class="w-full h-full object-cover"
+          alt=""
+          id="hero-image"
+        />
+      </div>
+
+      <!-- Layer 2 — Top Gradient -->
+      <div
+        class="absolute top-0 inset-x-0 h-gradient-top top-gradient z-1"
+      ></div>
+
+      <!-- Layer 3 — Nav Bar -->
+      <nav
+        class="absolute top-0 inset-x-0 h-nav-h flex justify-between items-center px-10 opacity-95 z-10"
+      >
+        <!-- Left: Chrome brand -->
+        <div class="flex items-center gap-2">
+          <svg
+            class="w-icon-hero h-icon-hero shrink-0"
+            width="28"
+            height="28"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="#FFFFFF"
+              d="M255.73,383.71c70.3,0,127.3-56.99,127.3-127.3s-56.99-127.3-127.3-127.3s-127.3,56.99-127.3,127.3S185.42,383.71,255.73,383.71z"
+            />
+            <path
+              fill="#34A853"
+              d="M145.48,320.08L35.26,129.17c-22.35,38.7-34.12,82.6-34.12,127.29s11.76,88.59,34.11,127.29c22.35,38.7,54.49,70.83,93.2,93.17c38.71,22.34,82.61,34.09,127.3,34.08l110.22-190.92v-0.03c-11.16,19.36-27.23,35.44-46.58,46.62c-19.35,11.18-41.3,17.07-63.65,17.07s-44.3-5.88-63.66-17.05C172.72,355.52,156.65,339.44,145.48,320.08z"
+            />
+            <path
+              fill="#FBBC04"
+              d="M365.96,320.08L255.74,510.99c44.69,0.01,88.59-11.75,127.29-34.1c38.7-22.34,70.84-54.48,93.18-93.18c22.34-38.7,34.1-82.61,34.09-127.3c-0.01-44.69-11.78-88.59-34.14-127.28H255.72l-0.03,0.02c22.35-0.01,44.31,5.86,63.66,17.03c19.36,11.17,35.43,27.24,46.61,46.59c11.18,19.35,17.06,41.31,17.06,63.66C383.03,278.77,377.14,300.72,365.96,320.08z"
+            />
+            <circle fill="#1A73E8" cx="255.73" cy="256.43" r="100.78" />
+            <path
+              fill="#EA4335"
+              d="M255.73,129.14h220.45C453.84,90.43,421.7,58.29,383,35.95C344.3,13.6,300.4,1.84,255.71,1.84c-44.69,0-88.59,11.77-127.29,34.12c-38.7,22.35-70.83,54.5-93.16,93.2l110.22,190.92l0.03,0.02c-11.18-19.35-17.08-41.3-17.08-63.65s5.87-44.31,17.04-63.66c11.17-19.36,27.24-35.43,46.6-46.6C211.42,135.01,233.38,129.13,255.73,129.14z"
+            />
+          </svg>
+          <span class="font-dm font-medium text-2xl text-white">chrome</span>
+        </div>
+
+        <!-- Center: Nav links -->
+        <div class="flex items-center gap-8">
+          <a
+            href="#"
+            class="font-dm text-base text-v3-nav-link hover:text-white transition-colors"
+            >AI Innovations</a
+          >
+          <a
+            href="#"
+            class="font-dm text-base text-v3-nav-link hover:text-white transition-colors"
+            >Safety</a
+          >
+          <a
+            href="#"
+            class="font-dm text-base text-v3-nav-link hover:text-white transition-colors"
+            >By Google</a
+          >
+          <a
+            href="#"
+            class="font-dm text-base text-v3-nav-link hover:text-white transition-colors"
+            >Mobile</a
+          >
+        </div>
+
+        <!-- Right: Avatar -->
+        <button
+          class="w-avatar-sm h-avatar-sm rounded-full bg-chrome-blue cursor-pointer hover:opacity-80 transition-opacity"
+        ></button>
+      </nav>
+
+      <!-- Layer 4 — Bottom Gradient -->
+      <div
+        class="absolute bottom-0 inset-x-0 h-gradient-bottom bottom-gradient z-1"
+      ></div>
+
+      <!-- Layer 5 — Center Content -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 top-center-y w-center-w flex flex-col items-center gap-4 z-5"
+      >
+        <!-- Gemini stars icon -->
+        <svg
+          class="w-icon-gemini h-icon-gemini"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+        >
+          <defs>
+            <linearGradient
+              id="gemini-stars-grad"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" stop-color="#8B5CF6" />
+              <stop offset="50%" stop-color="#4285F4" />
+              <stop offset="100%" stop-color="#06B6D4" />
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#gemini-stars-grad)"
+            d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
+          />
+        </svg>
+
+        <!-- Headline -->
+        <h1 class="font-bricolage font-bold text-hero text-white text-center">
+          Imagine it. Gemini creates it.
+        </h1>
+
+        <!-- Subline -->
+        <p
+          class="font-dm text-xl text-v3-text-secondary text-center max-w-subline-w"
+        >
+          Turn your words into stunning backgrounds — powered by Gemini, saved
+          to your Google Drive
+        </p>
+      </div>
+
+      <!-- Layer 6 — Prompt Bar -->
+      <form
+        hx-post="/generate"
+        hx-target="#image-result"
+        hx-swap="innerHTML"
+        hx-indicator="#loading"
+        hx-disabled-elt="button[type=submit]"
+        class="absolute bottom-38 left-1/2 -translate-x-1/2 w-promptbar-w h-promptbar-h rounded-pill bg-v3-glass-bg backdrop-blur-xl border border-v3-glass-border flex items-center gap-3 pl-6 pr-2 z-10"
+      >
+        <!-- Sparkle icon -->
+        <svg
+          class="w-icon-xl h-icon-xl shrink-0"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+        >
+          <defs>
+            <linearGradient id="sparkle-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8B5CF6" />
+              <stop offset="100%" stop-color="#4285F4" />
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#sparkle-grad)"
+            d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
+          />
+        </svg>
+
+        <!-- Text input -->
+        <input
+          type="text"
+          name="prompt"
+          placeholder="Describe an image you want to create..."
+          class="bg-transparent outline-none grow font-dm text-lg text-white placeholder-v3-prompt-text"
+        />
+
+        <!-- Generate button -->
+        <button
+          type="submit"
+          class="shrink-0 rounded-gen px-6 py-2.5 flex items-center gap-2 text-white font-dm font-semibold text-md tri-gradient cursor-pointer hover:opacity-90 transition-opacity"
+        >
+          <svg
+            class="w-icon-lg h-icon-lg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 4V2" />
+            <path d="M15 16v-2" />
+            <path d="M8 9h2" />
+            <path d="M20 9h2" />
+            <path d="M17.8 11.8L19 13" />
+            <path d="M15 9h.01" />
+            <path d="M17.8 6.2L19 5" />
+            <path d="m3 21 9-9" />
+            <path d="M12.2 6.2L11 5" />
+          </svg>
+          Generate
+        </button>
+      </form>
+
+      <!-- Layer 7 — Bottom Actions -->
+      <div
+        class="absolute bottom-20 left-1/2 -translate-x-1/2 w-promptbar-w flex justify-center gap-6 z-10"
+      >
+        <!-- Save to Google Drive -->
+        <form
+          hx-post="/save"
+          hx-target="#save-result"
+          hx-swap="innerHTML"
+          hx-include="#image-result input"
+          class="contents"
+        >
+          <input
+            type="hidden"
+            name="image_path"
+            id="fallback-image-path"
+            value="/images/generated-1772218971282.png"
+          />
+          <button
+            type="submit"
+            class="rounded-btn bg-v3-glass-bg backdrop-blur-lg border border-v3-glass-border px-4 py-2 font-dm text-sm text-v3-nav-link flex items-center gap-2 cursor-pointer hover:bg-v3-glass-border transition-colors"
+          >
+            <svg
+              class="w-icon-md h-icon-md"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M7.71 3.5L1.15 15l4.58 7.5h13.54l4.58-7.5L17.29 3.5H7.71zm9.1 1.5l4.99 8.5H16l-3-5.5L15.18 5h1.63zM12 7.5L14.5 12 12 16.5 9.5 12 12 7.5zM8.82 5h1.63L8.27 8.5l-3 5.5H2.2L8.82 5zM3.44 15.5h5.42l2.44 4.5H5.72l-2.28-4.5zm8.7 4.5l2.44-4.5h5.42l-2.28 4.5H12.14z"
+              />
+            </svg>
+            Save to Google Drive
+          </button>
+        </form>
+
+        <!-- Share -->
+        <button
+          class="rounded-btn bg-v3-glass-bg backdrop-blur-lg border border-v3-glass-border px-4 py-2 font-dm text-sm text-v3-nav-link flex items-center gap-2 cursor-pointer hover:bg-v3-glass-border transition-colors"
+        >
+          <svg
+            class="w-icon-md h-icon-md"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+          Share
+        </button>
+
+        <!-- Download -->
+        <button
+          onclick="downloadImage()"
+          class="rounded-btn bg-v3-glass-bg backdrop-blur-lg border border-v3-glass-border px-4 py-2 font-dm text-sm text-v3-nav-link flex items-center gap-2 cursor-pointer hover:bg-v3-glass-border transition-colors"
+        >
+          <svg
+            class="w-icon-md h-icon-md"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download
+        </button>
+      </div>
+
+      <!-- Layer 8 — Gemini Badge -->
+      <div
+        class="absolute right-50 bottom-52 rounded-lg bg-v3-glass-bg backdrop-blur-lg px-3 py-1.5 border border-v3-glass-border flex items-center gap-1.5 z-5"
+      >
+        <svg
+          class="w-icon-sm h-icon-sm"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+        >
+          <defs>
+            <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8B5CF6" />
+              <stop offset="50%" stop-color="#4285F4" />
+              <stop offset="100%" stop-color="#06B6D4" />
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#badge-grad)"
+            d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
+          />
+        </svg>
+        <span class="font-dm text-xs text-v3-badge-text"
+          >Powered by Gemini</span
+        >
+      </div>
+
+      <!-- Layer 10 — Legal Text -->
+      <p
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 max-w-legal-w font-dm text-2xs text-v3-text-faint text-center z-5"
+      >
+        By using Gemini, you agree to Google Terms of Service. Images are saved
+        to your Google Drive.
+      </p>
+
+      <!-- Hidden containers -->
+      <div id="image-result" class="hidden"></div>
+
+      <div
+        id="loading"
+        class="htmx-indicator absolute inset-0 flex items-center justify-center z-20"
+      >
+        <div class="flex flex-col items-center gap-3">
+          <div
+            class="w-12 h-12 rounded-md tri-gradient animate-pulse-slow"
+          ></div>
+          <p class="font-dm text-md text-white">Generating...</p>
+        </div>
+      </div>
+
+      <div
+        id="save-result"
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 rounded-lg bg-v3-glass-bg backdrop-blur-xl border border-v3-glass-border px-4 py-2.5 font-dm text-sm text-white empty:hidden"
+      ></div>
+    </div>
+
+    <!-- V3 HTMX: Swap hero background on generation -->
+    <script>
+      document.addEventListener("htmx:afterSwap", function (e) {
+        if (e.detail.target.id === "image-result") {
+          const img = e.detail.target.querySelector("img");
+          if (img) {
+            const heroImage = document.getElementById("hero-image");
+            heroImage.style.animation = "none";
+            heroImage.offsetHeight; // trigger reflow
+            heroImage.src = img.src;
+            heroImage.style.animation = "crossfade 1s ease-in-out";
+          }
+        }
+      });
+
+      function downloadImage() {
+        const heroImage = document.getElementById("hero-image");
+        if (!heroImage || !heroImage.src) {
+          alert("Generate an image first.");
+          return;
+        }
+        const a = document.createElement("a");
+        a.href = heroImage.src;
+        a.download = "gemini-generated.png";
+        a.click();
+      }
+    </script>
+  </body>
+</html>

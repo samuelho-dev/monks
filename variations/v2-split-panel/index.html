@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Chrome — AI Image Generator</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-inter">
+    <!-- Root layout -->
+    <div class="flex h-screen bg-white">
+      <!-- LEFT PANEL -->
+      <div class="w-panel-w shrink-0 bg-v2-dark-bg p-panel-p flex flex-col">
+        <!-- Logo row -->
+        <div class="flex items-center gap-2.5">
+          <svg
+            class="w-9 h-9 shrink-0"
+            width="36"
+            height="36"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="#FFFFFF"
+              d="M255.73,383.71c70.3,0,127.3-56.99,127.3-127.3s-56.99-127.3-127.3-127.3s-127.3,56.99-127.3,127.3S185.42,383.71,255.73,383.71z"
+            />
+            <path
+              fill="#34A853"
+              d="M145.48,320.08L35.26,129.17c-22.35,38.7-34.12,82.6-34.12,127.29s11.76,88.59,34.11,127.29c22.35,38.7,54.49,70.83,93.2,93.17c38.71,22.34,82.61,34.09,127.3,34.08l110.22-190.92v-0.03c-11.16,19.36-27.23,35.44-46.58,46.62c-19.35,11.18-41.3,17.07-63.65,17.07s-44.3-5.88-63.66-17.05C172.72,355.52,156.65,339.44,145.48,320.08z"
+            />
+            <path
+              fill="#FBBC04"
+              d="M365.96,320.08L255.74,510.99c44.69,0.01,88.59-11.75,127.29-34.1c38.7-22.34,70.84-54.48,93.18-93.18c22.34-38.7,34.1-82.61,34.09-127.3c-0.01-44.69-11.78-88.59-34.14-127.28H255.72l-0.03,0.02c22.35-0.01,44.31,5.86,63.66,17.03c19.36,11.17,35.43,27.24,46.61,46.59c11.18,19.35,17.06,41.31,17.06,63.66C383.03,278.77,377.14,300.72,365.96,320.08z"
+            />
+            <circle fill="#1A73E8" cx="255.73" cy="256.43" r="100.78" />
+            <path
+              fill="#EA4335"
+              d="M255.73,129.14h220.45C453.84,90.43,421.7,58.29,383,35.95C344.3,13.6,300.4,1.84,255.71,1.84c-44.69,0-88.59,11.77-127.29,34.12c-38.7,22.35-70.83,54.5-93.16,93.2l110.22,190.92l0.03,0.02c-11.18-19.35-17.08-41.3-17.08-63.65s5.87-44.31,17.04-63.66c11.17-19.36,27.24-35.43,46.6-46.6C211.42,135.01,233.38,129.13,255.73,129.14z"
+            />
+          </svg>
+          <span class="font-inter font-medium text-lg text-white"
+            >Google Chrome</span
+          >
+        </div>
+
+        <!-- Spacer -->
+        <div class="h-12"></div>
+
+        <!-- Headline -->
+        <h1 class="font-inter font-bold text-hero text-white leading-tight">
+          Create with
+        </h1>
+        <span
+          class="font-inter font-bold text-hero leading-tight gemini-text-gradient inline-block"
+          >Gemini</span
+        >
+
+        <!-- Spacer -->
+        <div class="h-1"></div>
+
+        <!-- Description -->
+        <p class="font-inter text-md text-v2-dark-desc leading-relaxed">
+          AI-powered image generation, right from your browser. Describe any
+          scene and watch it come to life — then save directly to Google Drive.
+        </p>
+
+        <!-- Spacer -->
+        <div class="h-6"></div>
+
+        <!-- Generate form -->
+        <form
+          hx-post="/generate"
+          hx-target="#image-result"
+          hx-swap="innerHTML"
+          hx-indicator="#loading"
+          hx-disabled-elt="button[type=submit]"
+        >
+          <div class="relative">
+            <textarea
+              name="prompt"
+              placeholder="Describe your vision..."
+              class="bg-v2-dark-input border border-v2-dark-border rounded-md h-textarea-h p-4 font-inter text-base text-white resize-none w-full placeholder-v2-dark-muted focus:outline-none focus:border-gemini-blue transition-colors"
+            ></textarea>
+            <!-- Sparkles icon bottom-right -->
+            <div
+              class="absolute bottom-3 right-3 w-icon-md h-icon-md text-v2-dark-muted"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="16"
+                height="16"
+                class="w-full h-full"
+              >
+                <path
+                  d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Spacer -->
+          <div class="h-4"></div>
+
+          <!-- Generate button -->
+          <button
+            type="submit"
+            class="w-full h-btn-h-lg rounded-xs font-inter font-semibold text-md text-white gemini-gradient cursor-pointer transition-opacity hover:opacity-90"
+          >
+            Generate
+          </button>
+        </form>
+
+        <!-- Grow spacer -->
+        <div class="grow"></div>
+
+        <!-- Powered label -->
+        <p class="font-jetbrains text-2xs text-v2-dark-muted mb-3">
+          Powered by Gemini
+        </p>
+
+        <!-- Save form -->
+        <form
+          hx-post="/save"
+          hx-target="#save-result"
+          hx-swap="innerHTML"
+          hx-include="#image-result input"
+          hx-indicator="#save-indicator"
+        >
+          <input type="hidden" name="image_path" id="fallback-image-path" value="/images/generated-1772219000140.png" />
+          <button
+            type="submit"
+            class="w-full h-btn-h rounded-xs bg-v2-dark-input border border-v2-dark-border font-inter font-medium text-sm text-white flex items-center justify-center gap-2.5 cursor-pointer transition-opacity hover:opacity-90"
+          >
+            <!-- Google Drive SVG icon -->
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="16"
+              height="16"
+              class="w-icon-md h-icon-md"
+            >
+              <line x1="22" y1="12" x2="2" y2="12" />
+              <path
+                d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"
+              />
+              <line x1="6" y1="16" x2="6.01" y2="16" />
+              <line x1="10" y1="16" x2="10.01" y2="16" />
+            </svg>
+            Save to Google Drive
+          </button>
+        </form>
+        <div
+          id="save-indicator"
+          class="htmx-indicator font-jetbrains text-2xs text-v2-dark-muted mt-2"
+        >
+          Saving...
+        </div>
+        <div id="save-result" class="mt-2 font-inter text-sm text-white [&_a]:text-gemini-blue [&_a]:underline [&_a]:underline-offset-2 [&_a]:decoration-gemini-blue/50 [&_a:hover]:decoration-gemini-blue"></div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="grow min-w-0 bg-v2-light-bg flex flex-col">
+        <!-- Top nav bar -->
+        <nav class="flex justify-end items-center gap-7 px-8 py-4">
+          <a
+            href="#"
+            class="font-inter font-medium text-sm text-v2-nav-text hover:opacity-70 transition-opacity"
+            >Gallery</a
+          >
+          <a
+            href="#"
+            class="font-inter font-medium text-sm text-v2-nav-text hover:opacity-70 transition-opacity"
+            >My Creations</a
+          >
+          <a
+            href="#"
+            class="font-inter font-medium text-sm text-v2-nav-text hover:opacity-70 transition-opacity"
+            >Settings</a
+          >
+          <button
+            class="w-avatar-sm h-avatar-sm rounded-xl bg-chrome-blue text-white font-inter text-sm font-semibold flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
+          >
+            J
+          </button>
+        </nav>
+
+        <!-- Image container -->
+        <div class="grow min-h-0 flex flex-col px-8 pb-6">
+          <!-- Image wrapper -->
+          <div
+            class="relative grow min-h-0 w-full rounded-xs overflow-hidden shadow-preview"
+          >
+            <!-- Image result (HTMX target) -->
+            <div id="image-result" class="w-full h-full">
+              <img
+                src="/images/generated-1772219000140.png"
+                class="w-full h-full object-cover"
+                alt="AI generated preview"
+              />
+            </div>
+
+            <!-- Loading indicator -->
+            <div
+              id="loading"
+              class="htmx-indicator absolute inset-0 flex items-center justify-center bg-v2-light-bg/80 z-10"
+            >
+              <div class="flex flex-col items-center gap-3">
+                <div
+                  class="gemini-gradient w-12 h-12 rounded-md animate-pulse-slow"
+                ></div>
+                <p class="font-inter text-sm text-v2-nav-text">Generating...</p>
+              </div>
+            </div>
+
+            <!-- Top-left overlay badge -->
+            <div
+              class="absolute top-4 left-4 rounded-md bg-v2-overlay px-3 py-1.5 flex items-center gap-1.5"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="14"
+                height="14"
+                class="w-icon-sm h-icon-sm text-white"
+              >
+                <path
+                  d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"
+                />
+              </svg>
+              <span class="font-dm font-medium text-xs text-white"
+                >Generated by Gemini</span
+              >
+            </div>
+
+            <!-- Bottom-left dimensions badge -->
+            <div
+              class="absolute bottom-4 left-4 rounded-md bg-v2-overlay px-3 py-1.5 flex items-center gap-1.5"
+            >
+              <span class="font-dm font-medium text-xs text-white"
+                >1024 &times; 1024</span
+              >
+            </div>
+          </div>
+
+          <!-- Toolbar below image -->
+          <div class="flex justify-end items-center gap-2 pt-3">
+            <!-- Download button -->
+            <button
+              onclick="downloadImage()"
+              class="bg-v2-toolbar-bg rounded-xs h-10 w-10 flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+                class="w-icon-md h-icon-md text-v2-toolbar-icon"
+              >
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </button>
+
+            <!-- Share button -->
+            <button
+              class="bg-v2-toolbar-bg rounded-xs h-10 w-10 flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+                class="w-icon-md h-icon-md text-v2-toolbar-icon"
+              >
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+              </svg>
+            </button>
+
+            <!-- Save to Drive text button -->
+            <button
+              class="bg-v2-toolbar-bg rounded-xs h-10 px-4 font-inter font-medium text-sm text-v2-toolbar-icon flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+                class="w-icon-md h-icon-md"
+              >
+                <line x1="22" y1="12" x2="2" y2="12" />
+                <path
+                  d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"
+                />
+                <line x1="6" y1="16" x2="6.01" y2="16" />
+                <line x1="10" y1="16" x2="10.01" y2="16" />
+              </svg>
+              Save to Drive
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function downloadImage() {
+        const img = document.querySelector('#image-result img');
+        if (!img) { alert('Generate an image first.'); return; }
+        const a = document.createElement('a');
+        a.href = img.src;
+        a.download = 'gemini-generated.png';
+        a.click();
+      }
+    </script>
+  </body>
+</html>

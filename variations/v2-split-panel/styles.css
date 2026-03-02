@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@source "./index.html";
+
+@theme {
+  /* Fonts */
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  /* Font Sizes */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.25rem;
+  --text-md: 0.9375rem;
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.125rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.25rem;
+  --text-2xl--line-height: 1.5rem;
+  --text-hero: 3rem;
+  --text-hero--line-height: 1.1;
+
+  /* Chrome Brand Colors */
+  --color-chrome-red: #EA4335;
+  --color-chrome-yellow: #FBBC05;
+  --color-chrome-green: #34A853;
+  --color-chrome-blue: #4285F4;
+
+  /* Gemini Gradient Colors */
+  --color-gemini-blue: #4285F4;
+  --color-gemini-purple: #7B61FF;
+  --color-gemini-violet: #A855F7;
+
+  /* Status */
+  --color-error: #EF4444;
+
+  /* Spacing */
+  --spacing: 0.25rem;
+  --spacing-nav-y: 1rem;
+  --spacing-nav-x: 3rem;
+  --spacing-section-x: 3rem;
+  --spacing-hero-top: 5rem;
+  --spacing-hero-bottom: 2.5rem;
+  --spacing-panel-w: 31.25rem;
+  --spacing-panel-p: 3rem;
+  --spacing-textarea-h: 11.25rem;
+  --spacing-btn-h: 2.75rem;
+  --spacing-btn-h-lg: 3rem;
+  --spacing-avatar: 2.25rem;
+  --spacing-avatar-sm: 2rem;
+  --spacing-icon-sm: 0.875rem;
+  --spacing-icon-md: 1rem;
+  --spacing-icon-lg: 1.125rem;
+
+  /* Radius */
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1rem;
+  --radius-avatar: 1.125rem;
+  --radius-card: 1.25rem;
+  --radius-gen: 1.375rem;
+
+  /* Shadows */
+  --shadow-preview: 0 8px 32px -4px rgba(0,0,0,0.1);
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  --animate-pulse-slow: pulse-slow 2s ease-in-out infinite;
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* V2 Specific Colors */
+  --color-v2-dark-bg: #1A1A2E;
+  --color-v2-dark-input: #252545;
+  --color-v2-dark-border: #3A3A5C;
+  --color-v2-dark-muted: #6B6B8D;
+  --color-v2-dark-desc: #9A9AB0;
+  --color-v2-light-bg: #F8F9FA;
+  --color-v2-nav-text: #555555;
+  --color-v2-toolbar-bg: #EEEEEE;
+  --color-v2-toolbar-icon: #333333;
+  --color-v2-grad-start: #4285F4;
+  --color-v2-grad-mid: #A370F7;
+  --color-v2-grad-end: #F472B6;
+  --color-v2-overlay: #000000AA;
+}
+
+.gemini-gradient {
+  background: linear-gradient(90deg, #4285F4, #7B61FF);
+}
+.gemini-text-gradient {
+  background: linear-gradient(90deg, #4285F4, #A370F7, #F472B6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.chrome-angular {
+  background: conic-gradient(#EA4335, #FBBC05, #34A853, #4285F4, #EA4335);
+}
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator, .htmx-request.htmx-indicator { display: flex; }
+.generated-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

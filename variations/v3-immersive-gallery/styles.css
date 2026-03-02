@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@source "./index.html";
+
+@theme {
+  /* Fonts */
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  /* Font Sizes */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.25rem;
+  --text-md: 0.9375rem;
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.125rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.25rem;
+  --text-2xl--line-height: 1.5rem;
+  --text-hero: 3rem;
+  --text-hero--line-height: 1.1;
+
+  /* Chrome Brand Colors */
+  --color-chrome-red: #EA4335;
+  --color-chrome-yellow: #FBBC05;
+  --color-chrome-green: #34A853;
+  --color-chrome-blue: #4285F4;
+
+  /* Gemini Gradient Colors */
+  --color-gemini-blue: #4285F4;
+  --color-gemini-purple: #7B61FF;
+  --color-gemini-violet: #A855F7;
+
+  /* Status */
+  --color-error: #EF4444;
+
+  /* Spacing */
+  --spacing: 0.25rem;
+  --spacing-nav-y: 1rem;
+  --spacing-nav-x: 3rem;
+  --spacing-section-x: 3rem;
+  --spacing-center-w: 43.75rem;
+  --spacing-center-y: 16.875rem;
+  --spacing-promptbar-w: 47.5rem;
+  --spacing-promptbar-h: 3.5rem;
+  --spacing-subline-w: 37.5rem;
+  --spacing-thumb: 3.25rem;
+  --spacing-icon-sm: 0.875rem;
+  --spacing-icon-md: 1rem;
+  --spacing-icon-lg: 1.125rem;
+  --spacing-icon-xl: 1.375rem;
+  --spacing-icon-hero: 1.75rem;
+  --spacing-icon-gemini: 3rem;
+  --spacing-avatar-sm: 2rem;
+  --spacing-gradient-top: 7.5rem;
+  --spacing-gradient-bottom: 31.25rem;
+  --spacing-nav-h: 4rem;
+  --spacing-legal-w: 37.5rem;
+
+  /* Radius */
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.875rem;
+  --radius-btn: 1.25rem;
+  --radius-gen: 1.375rem;
+  --radius-pill: 1.75rem;
+
+  /* Shadows */
+  --shadow-preview: 0 8px 32px -4px rgba(0,0,0,0.1);
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  --animate-pulse-slow: pulse-slow 2s ease-in-out infinite;
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  --animate-crossfade: crossfade 1s ease-in-out;
+  @keyframes crossfade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  /* V3 Specific Colors */
+  --color-v3-bg: #0F0F0F;
+  --color-v3-text-primary: #FFFFFF;
+  --color-v3-text-secondary: #FFFFFFBB;
+  --color-v3-text-muted: #FFFFFF88;
+  --color-v3-text-faint: #FFFFFF44;
+  --color-v3-nav-link: #FFFFFFCC;
+  --color-v3-glass-bg: #FFFFFF14;
+  --color-v3-glass-border: #FFFFFF22;
+  --color-v3-glass-stroke: #FFFFFF33;
+  --color-v3-gallery-label: #FFFFFF88;
+  --color-v3-badge-text: #FFFFFFAA;
+  --color-v3-prompt-text: #FFFFFF66;
+  --color-v3-grad-purple: #8B5CF6;
+  --color-v3-grad-blue: #4285F4;
+  --color-v3-grad-cyan: #06B6D4;
+}
+
+.tri-gradient {
+  background: linear-gradient(90deg, #8B5CF6, #4285F4, #06B6D4);
+}
+.top-gradient {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.67), transparent);
+}
+.bottom-gradient {
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.93));
+}
+.chrome-gradient-text {
+  background: linear-gradient(90deg, #EA4335, #FBBC05, #34A853, #4285F4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator, .htmx-request.htmx-indicator { display: flex; }
+.generated-image {
+  display: none;
+}

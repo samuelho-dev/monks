@@ -1,0 +1,20 @@
+{
+  "name": "monks",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "playwright": "^1.58.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "bun-plugin-tailwind": "^0.1.2",
+    "tailwindcss": "^4.2.1"
+  }
+}
