@@ -812,7 +812,7 @@
               "id": "GUpKS",
               "name": "Powered Label",
               "fill": "#6B6B8D",
-              "content": "Powered by Gemini 2.0",
+              "content": "Powered by Gemini",
               "fontFamily": "JetBrains Mono",
               "fontSize": 11
             },
@@ -1418,7 +1418,7 @@
               "fill": "#FFFFFFBB",
               "textGrowth": "fixed-width",
               "width": 600,
-              "content": "Turn your words into stunning visuals — powered by Gemini, saved to your Google Drive",
+              "content": "Turn your words into stunning backgrounds — powered by Gemini, saved to your Google Drive",
               "textAlign": "center",
               "fontFamily": "DM Sans",
               "fontSize": 18

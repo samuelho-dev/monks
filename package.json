@@ -1,18 +1,20 @@
 {
   "name": "monks",
-  "module": "dev.ts",
+  "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --env-file=.env dev.ts"
+    "dev": "bun index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "playwright": "^1.58.2"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
-    "googleapis": "^171.4.0"
+    "bun-plugin-tailwind": "^0.1.2",
+    "tailwindcss": "^4.2.1"
   }
 }
